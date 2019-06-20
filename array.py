@@ -41,18 +41,19 @@ def searchInsert(nums, target):
     return l
 
 
-def maxSubArray(nums):
-    max_sum = nums[0]
-    buff = nums[0]
-    for i in range(1, len(nums)):
-        buff += nums[i]
-        if nums[i] > buff and buff > 0:
-            max_sum = nums[i]
-            buff = nums[i]
+def plusOne(digits):
+    carry = 1
+    for i in reversed(range(len(digits))):
+        if digits[i] == 9 and carry == 1:
+            digits[i] = 0
+            carry = 1
         else:
-            max_sum = max(buff, max_sum)
-    return max_sum
+            digits[i] += carry
+            carry = 0
+    if carry == 1:
+        return [1] + digits
+    return digits
 
 
 if __name__ == '__main__':
-    print(maxSubArray([-2, -1]))
+    print(plusOne([9, 9, 8]))
