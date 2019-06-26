@@ -55,5 +55,24 @@ def plusOne(digits):
     return digits
 
 
+def maxProfit(prices):
+    if len(prices) < 2:
+        return 0
+    start = prices[0]
+    profit = []
+    for i in range(1, len(prices)):
+        if prices[i] < prices[i-1]:
+            profit.append(max(0, prices[i-1] - start))
+            start = prices[i]
+    if prices[-1] >= prices[-2]:
+        profit.append(prices[-1] - start)
+    if len(profit) == 0:
+        return 0
+    if len(profit) == 1:
+        return profit[0]
+    profit.sort()
+    return profit[-1] + profit[-2]
+
+
 if __name__ == '__main__':
-    print(plusOne([9, 9, 8]))
+    print(maxProfit([7, 6, 4, 3, 1]))
